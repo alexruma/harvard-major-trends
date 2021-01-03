@@ -28,8 +28,11 @@ class Concentration:
     def __init__(self, url):
         self.page = requests.get(url)
         self.soup = BeautifulSoup(self.page.content, 'html.parser')
+        self.year_list = []
+        self.enrollment_list = []
         self.enrollment_data = self.get_enrollment_data()
         self.name = self.get_name()
+
 
     def get_name(self):
         """Scrapes page to return name of concentration."""
@@ -59,6 +62,9 @@ class Concentration:
         # Transform list to just contain integers derived from text elements.
         for i in range(len(enrollment_list)):
             enrollment_list[i] = int(enrollment_list[i].text.strip())
+
+        self.enrollment_list = enrollment_list
+        self.year_list = year_list
 
         data_dict = {}
         for i in range(len(year_list)):
