@@ -12,6 +12,7 @@ def plot_graph(concentration_obj):
     plt.show()
 
 
+"""
 def plot_multiple(obj1, obj2, obj3):
     plt.subplot(3, 1, 1)
     plt.plot(obj1.year_list, obj1.enrollment_list)
@@ -33,3 +34,16 @@ def plot_multiple(obj1, obj2, obj3):
 
     plt.show()
 
+"""
+
+def plot_multiple(*concentrations):
+    plt.style.use('fivethirtyeight')
+    print(plt.style.available)
+
+    for concentration in concentrations:
+        plt.plot(concentration.year_list, concentration.enrollment_list, label=concentration.name, marker=".")
+
+    plt.legend()
+    #plt.grid(True)
+    plt.tight_layout()
+    plt.show()
